@@ -13,13 +13,13 @@ owns = [
   },
   {
     "name": "QQQ",
-    "unit_price": 16580,
+    "unit_price": 16680,
     "quantity": 4,
     "ratio": 3
   },
   {
     "name": "Nifty 50",
-    "unit_price": 12635,
+    "unit_price": 12445,
     "quantity": 7,
     "ratio": 2
   }

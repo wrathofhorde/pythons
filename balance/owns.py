@@ -7,19 +7,19 @@ index = {
 owns = [
   {
     "name": "S&P",
-    "unit_price": 16230,
-    "quantity": 9,
+    "unit_price": 16300,
+    "quantity": 12,
     "ratio": 5
   },
   {
     "name": "QQQ",
-    "unit_price": 16680,
-    "quantity": 4,
+    "unit_price": 16765,
+    "quantity": 7,
     "ratio": 3
   },
   {
     "name": "Nifty 50",
-    "unit_price": 12445,
+    "unit_price": 12655,
     "quantity": 7,
     "ratio": 2
   }

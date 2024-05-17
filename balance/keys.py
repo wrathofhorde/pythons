@@ -9,4 +9,5 @@ RATIO = "ratio"
 PERCENT = 'percent'
 ASSIGNMENT = 'assignment'
 BUY = 'buy'
+BALANCE_AFTER_BUY = "balance_after_buy"
 

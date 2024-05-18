@@ -1,6 +1,13 @@
+import sys
 import keys
 import owns
 
+
+if __name__ == '__main__':
+  if len(sys.argv) != 2:
+    print('run balance.py with json')
+    print('python3 balance.py owns.json')
+    exit(0)
 # with open("stocks.json") as s:
 #   stocks = json.load(s)
 # snp = stocks[0];

@@ -1,23 +1,28 @@
 import sys
+import json
 import keys
-import owns
-
 
 if __name__ == '__main__':
-  if len(sys.argv) != 2:
-    print('run balance.py with json')
-    print('python3 balance.py owns.json')
+  if len(sys.argv) != 3:
+    print('python3 balance.py deposit_amount json_file')
+    print('python3 balance.py 100000 owns.json')
     exit(0)
 # with open("stocks.json") as s:
 #   stocks = json.load(s)
 # snp = stocks[0];
 # print(json.dumps(snp, indent=2, ensure_ascii=False))
 
+deposit = int(sys.argv[1])
+json_file = sys.argv[2]
+
+print("*******************************************")
+print(f"입금금액: {format(deposit, ',')}, json file: {json_file}")
+
+with open(json_file) as s:
+  stocks = json.load(s)
+
 sum = 0
 total_ratio = 0
-index = owns.index
-stocks = owns.owns
-deposit = owns.deposit
 
 for s in stocks:
   total_ratio += s[keys.RATIO]
@@ -53,9 +58,16 @@ for s in stocks:
   s[keys.BALANCE_AFTER_BUY] = s[keys.BUY] * s[keys.UNIT_PRICE] + s[keys.TOTAL_PRICE]
   total_balance += s[keys.BALANCE_AFTER_BUY]
 
+out_json =[]
+
 for s in stocks:
   s[keys.RATIO_AFTER_BUY] = round(100 * s[keys.BALANCE_AFTER_BUY] / total_balance, 1)
-  print(s)
+  j = json.dumps(s, indent = 2, ensure_ascii = False)
+  out_json.append(s)
+  print(j)
+
+with open("out.json", 'w', encoding="utf-8") as w:
+  json.dump(out_json, w, ensure_ascii = False, indent = 2)
 
 for s in stocks:
   print(f"{s[keys.NAME]}: {s[keys.BUY]}, {s[keys.RATIO_AFTER_BUY]}%")

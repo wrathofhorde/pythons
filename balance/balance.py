@@ -1,6 +1,9 @@
 import sys
 import json
 import keys
+import matplotlib.pyplot as plot
+
+PRECISION = 1
 
 if __name__ == '__main__':
   if len(sys.argv) != 3:
@@ -58,18 +61,27 @@ for s in stocks:
   s[keys.BALANCE_AFTER_BUY] = s[keys.BUY] * s[keys.UNIT_PRICE] + s[keys.TOTAL_PRICE]
   total_balance += s[keys.BALANCE_AFTER_BUY]
 
-out_json =[]
-
 for s in stocks:
-  s[keys.RATIO_AFTER_BUY] = round(100 * s[keys.BALANCE_AFTER_BUY] / total_balance, 1)
+  s[keys.RATIO_AFTER_BUY] = round(100 * s[keys.BALANCE_AFTER_BUY] / total_balance, PRECISION)
   j = json.dumps(s, indent = 2, ensure_ascii = False)
-  out_json.append(s)
   print(j)
 
 with open("out.json", 'w', encoding="utf-8") as w:
-  json.dump(out_json, w, ensure_ascii = False, indent = 2)
+  json.dump(stocks, w, ensure_ascii = False, indent = 2)
 
 for s in stocks:
   print(f"{s[keys.NAME]}: {s[keys.BUY]}, {s[keys.RATIO_AFTER_BUY]}%")
 
 print(f"잔액: {balance}")
+
+ratio = []
+labels = []
+
+for s in stocks:
+  ratio.append(s[keys.RATIO_AFTER_BUY])
+  labels.append(f"{s[keys.NAME]} ({s[keys.BUY]})")
+
+wedgeprops={'width': 0.7, 'edgecolor': 'w', 'linewidth': 5}
+plot.rc("font", size=16)
+plot.pie(ratio, labels=labels, autopct="%.1f%%", wedgeprops=wedgeprops)
+plot.show()

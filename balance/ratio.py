@@ -37,6 +37,5 @@ with open("ratio_out.json", 'w', encoding="utf-8") as w:
   
 wedgeprops={'width': 0.7, 'edgecolor': 'w', 'linewidth': 5}
 plot.rc("font", size=12)
-plot.pie(ratio, labels=labels, autopct="%.2f%%", wedgeprops=wedgeprops)
+plot.pie(ratio, labels=labels, autopct="%.1f%%", wedgeprops=wedgeprops, startangle=90, counterclock=False)
 plot.show()
-

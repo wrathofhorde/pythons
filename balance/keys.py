@@ -10,5 +10,5 @@ PERCENT = 'percent'
 ASSIGNMENT = 'assignment'
 BUY = 'buy'
 BALANCE_AFTER_BUY = "balance_after_buy"
-RATIO_AFTER_BUY = "RATIO_AFTER_BUY"
-
+RATIO_AFTER_BUY = "ratio_after_buy"
+PURCHASE_PRICE = "purchase_price"

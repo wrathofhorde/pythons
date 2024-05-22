@@ -83,5 +83,5 @@ for s in stocks:
 
 wedgeprops={'width': 0.7, 'edgecolor': 'w', 'linewidth': 5}
 plot.rc("font", size=16)
-plot.pie(ratio, labels=labels, autopct="%.1f%%", wedgeprops=wedgeprops)
+plot.pie(ratio, labels=labels, autopct="%.1f%%", wedgeprops=wedgeprops, startangle=90, counterclock=False)
 plot.show()

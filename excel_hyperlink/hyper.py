@@ -1,5 +1,6 @@
-import openpyxl as op
 import os
+import csv
+import openpyxl as op
 
 #엑셀파일, 시트 정보를 읽어서 리스트로 리턴
 def getSheetInfo(file : str) -> list:
@@ -33,7 +34,11 @@ def getHyperLink(file, shtlist : list):
     wb.save(file)
     wb.close()
 
-file = r"table.xlsx"
+file = r"pravang_wallet_db_테이블명세_240513.xlsx"
 sht_info = getSheetInfo(file)
 # print(sht_info)
 getHyperLink(file, sht_info)
+
+with open(f"{file}.csv", "w") as f:
+    writer = csv.writer(f, delimiter = ";")
+    writer.writerow(sht_info) 

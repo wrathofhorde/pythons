@@ -1,6 +1,7 @@
 import sys
 import json
 import keys
+from icecream import ic
 import matplotlib.pyplot as plot
 
 PRECISION = 1
@@ -47,6 +48,8 @@ total_price_to_buy = 0
 for s in stocks:
   total_price_to_buy += s[keys.BUY] * s[keys.UNIT_PRICE]
 
+ic(total_price_to_buy)
+
 balance = deposit - total_price_to_buy
 
 for s in stocks:
@@ -70,7 +73,8 @@ with open("out.json", 'w', encoding="utf-8") as w:
   json.dump(stocks, w, ensure_ascii = False, indent = 2)
 
 for s in stocks:
-  print(f"{s[keys.NAME]}: {s[keys.BUY]}, {s[keys.RATIO_AFTER_BUY]}%")
+  result = f"{s[keys.NAME]}: {s[keys.BUY]}, {s[keys.RATIO_AFTER_BUY]}%"
+  ic(result)
 
 print(f"잔액: {balance}")
 

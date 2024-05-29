@@ -2,21 +2,25 @@ import sys
 import json
 import keys
 from icecream import ic
+from operator import itemgetter
 import matplotlib.pyplot as plot
 
-PRECISION = 1
+PRECISION = 2
+
+def printUsageAndExit():
+  print('Usage: python3 balance.py deposit_amount json_file')
+  print('Example: python3 balance.py 100000 owns.json')
+  exit(0)
 
 if __name__ == '__main__':
   if len(sys.argv) != 3:
-    print('python3 balance.py deposit_amount json_file')
-    print('python3 balance.py 100000 owns.json')
-    exit(0)
-# with open("stocks.json") as s:
-#   stocks = json.load(s)
-# snp = stocks[0];
-# print(json.dumps(snp, indent=2, ensure_ascii=False))
+    printUsageAndExit()
 
-deposit = int(sys.argv[1])
+try:
+  deposit = int(sys.argv[1])
+except:
+  printUsageAndExit()
+
 json_file = sys.argv[2]
 
 print("*******************************************")
@@ -33,48 +37,46 @@ for s in stocks:
 
 for s in stocks:
   s[keys.TOTAL_PRICE] = s[keys.UNIT_PRICE] * s[keys.QUANTITY]
-  s[keys.PERCENT] = round(s[keys.RATIO] / total_ratio, 2)
+  s[keys.TARGET_RATIO] = s[keys.RATIO] / total_ratio
   sum += s[keys.TOTAL_PRICE]
 
-sum += deposit  #주식 가격에 입금액 추가
+sum += deposit
 
 for s in stocks:
-  s[keys.ASSIGNMENT] = round(sum * s[keys.PERCENT]) - s[keys.TOTAL_PRICE]
-  s[keys.ASSIGNMENT] = s[keys.ASSIGNMENT] if s[keys.ASSIGNMENT] >= s[keys.UNIT_PRICE] else 0
-  s[keys.BUY] = s[keys.ASSIGNMENT] // s[keys.UNIT_PRICE]
+  s[keys.CURRENT_RATIO] = s[keys.TOTAL_PRICE] / sum
+  s[keys.PERCENT_POINT] = s[keys.TARGET_RATIO] - s[keys.CURRENT_RATIO]
 
-total_price_to_buy = 0
+stocks = sorted(stocks, key = itemgetter(keys.PERCENT_POINT), reverse = True)
 
-for s in stocks:
-  total_price_to_buy += s[keys.BUY] * s[keys.UNIT_PRICE]
-
-ic(total_price_to_buy)
-
-balance = deposit - total_price_to_buy
+balance = deposit
 
 for s in stocks:
-  if s[keys.BUY] == 0 and balance > s[keys.UNIT_PRICE]:
-    extra_buy = balance // s[keys.UNIT_PRICE]
-    s[keys.BUY] += extra_buy
-    balance -= extra_buy * s[keys.UNIT_PRICE]
+  buy = 0
+  unit_price = s[keys.UNIT_PRICE]
+  total_price = s[keys.TOTAL_PRICE]
+  target_ratio = s[keys.TARGET_RATIO]
+  current_ratio = s[keys.CURRENT_RATIO]
 
-total_balance = 0
+  while current_ratio < target_ratio and balance > unit_price:
+    buy += 1
+    balance -= unit_price
+    total_price += unit_price
+    current_ratio = total_price / sum
+
+  s[keys.BUY] = buy
 
 for s in stocks:
-  s[keys.BALANCE_AFTER_BUY] = s[keys.BUY] * s[keys.UNIT_PRICE] + s[keys.TOTAL_PRICE]
-  total_balance += s[keys.BALANCE_AFTER_BUY]
-
-for s in stocks:
-  s[keys.RATIO_AFTER_BUY] = round(100 * s[keys.BALANCE_AFTER_BUY] / total_balance, PRECISION)
+  total_after_buy = s[keys.TOTAL_PRICE] + s[keys.UNIT_PRICE] * s[keys.BUY]
+  s[keys.RATIO_AFTER_BUY] = round(total_after_buy / sum, PRECISION)
+  s[keys.TARGET_RATIO] = round(s[keys.TARGET_RATIO] * 100, PRECISION)
+  s[keys.CURRENT_RATIO] = round(s[keys.CURRENT_RATIO] * 100, PRECISION)
+  s[keys.PERCENT_POINT] = round(s[keys.PERCENT_POINT] * 100, PRECISION)
+  s[keys.RATIO_AFTER_BUY] = round(s[keys.RATIO_AFTER_BUY] * 100, PRECISION)
   j = json.dumps(s, indent = 2, ensure_ascii = False)
   print(j)
 
 with open("out.json", 'w', encoding="utf-8") as w:
   json.dump(stocks, w, ensure_ascii = False, indent = 2)
-
-for s in stocks:
-  result = f"{s[keys.NAME]}: {s[keys.BUY]}, {s[keys.RATIO_AFTER_BUY]}%"
-  ic(result)
 
 print(f"잔액: {balance}")
 

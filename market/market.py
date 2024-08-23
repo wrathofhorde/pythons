@@ -1,21 +1,22 @@
 import duration
 import handledic
+import handlecsv
 import closingprice
-from icecream import ic
 from datetime import timedelta
 
 days = duration.days()
 prices = handledic.read()
-yesterday = days.yesterday
+today = days.today
 firstday = days.firstday
 startday = days.startday
 endday = days.endday
-diff = yesterday - startday
+diff = today - startday
 
 for offset in range(diff.days):
     day = days.tostring(startday + timedelta(days=offset))
+    value = prices.get(day)
 
-    if prices.get(day) is None:
+    if value is None or len(value) != 3:
         list = closingprice.get(day)
         prices[day] = list
         print(f"{day}: {list}")
@@ -23,3 +24,33 @@ for offset in range(diff.days):
         print(f"{day} skipped")
 
 handledic.write(prices)
+
+csvlist = []
+btc = eth = xrp = 0
+diff = endday - startday
+
+for offset in range(diff.days):
+    day = days.tostring(startday + timedelta(days=offset))
+    value = prices.get(day)
+    btc += value[0]
+    eth += value[1]
+    xrp += value[2]
+    value.insert(0, day)
+    csvlist.append(value)
+
+
+sum_of_days = diff.days
+
+btc //= sum_of_days
+eth //= sum_of_days
+xrp //= sum_of_days
+
+str_startday = days.tostring(startday)
+str_endday = days.tostring(endday)
+
+handlecsv.write(csvlist)
+
+print(f"{str_startday} ~ {str_endday} 1년({sum_of_days}일) BTC 종가 평균:{int(btc)}")
+print(f"{str_startday} ~ {str_endday} 1년({sum_of_days}일) ETH 종가 평균:{int(eth)}")
+print(f"{str_startday} ~ {str_endday} 1년({sum_of_days}일) XRP 종가 평균:{int(xrp)}")
+

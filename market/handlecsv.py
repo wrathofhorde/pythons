@@ -4,17 +4,20 @@ from icecream import ic
 
 filename = "average_prices.csv"
 
-def write(prices):
-  with open(filename, 'a') as file:
+def write(prices, name = None):
+  name = filename if name is None else name
+
+  with open(name, 'w') as file:
     writer = csv.writer(file)
     writer.writerows(prices)
 
 
-def read():
+def read(name = None):
   list = []
+  name = filename if name is None else name
 
-  if os.path.isfile(filename):
-    with open(filename, "r") as file:
+  if os.path.isfile(name):
+    with open(name, "r") as file:
       data = csv.reader(file)
       for row in data:
         list.append(row)

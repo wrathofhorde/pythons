@@ -2,18 +2,19 @@ import os
 import pickle
 from icecream import ic
 
-filename = "average_prices.pic"
+filename = "average_prices.dat"
 
 def write(data, name = None):
-  file = filename if name is None else name
-  with open(filename, "wb") as file:
+  name = filename if name is None else name
+  
+  with open(name, "wb") as file:
     pickle.dump(data, file)
 
 def read(name = None):
-  file = filename if name is None else name
+  name = filename if name is None else name
 
-  if os.path.isfile(file):
-    with open(filename, "rb") as file:
+  if os.path.isfile(name):
+    with open(name, "rb") as file:
       data = pickle.load(file)
       return data
   else:

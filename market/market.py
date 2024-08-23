@@ -1,23 +1,25 @@
-import requests
+import duration
+import handledic
+import closingprice
 from icecream import ic
-from datetime import datetime
 from datetime import timedelta
 
-today = datetime.today()
-yesterday = today - timedelta(days=1)
-date = yesterday.strftime("%Y-%m-%d") + "T09:01:00%2B09:00"
+days = duration.days()
+prices = handledic.read()
+yesterday = days.yesterday
+firstday = days.firstday
+startday = days.startday
+endday = days.endday
+diff = yesterday - startday
 
-markets = ["KRW-BTC", "KRW-ETH", "KRW-XRP"]
-headers = {"accept": "application/json"}
-url = "https://api.upbit.com/v1/candles/minutes/1?market=%s&to=%s"
+for offset in range(diff.days):
+    day = days.tostring(startday + timedelta(days=offset))
 
-
-for market in markets:
-    print(url % (market, date))
-    res = requests.get(url % (market, date), headers=headers)
-
-    if res.status_code == 200:
-        data = res.json()
-        ic(data)
+    if prices.get(day) is None:
+        list = closingprice.get(day)
+        prices[day] = list
+        print(f"{day}: {list}")
     else:
-        ic(res)
+        print(f"{day} skipped")
+
+handledic.write(prices)

@@ -42,9 +42,9 @@ for offset in range(sum_of_days):
 btc /= sum_of_days
 eth /= sum_of_days
 xrp /= sum_of_days
-btc = round(btc, 0)
-eth = round(eth, 0)
-xrp = round(xrp, 0)
+btc = format(int(round(btc, 0)), ",d")
+eth = format(int(round(eth, 0)), ",d")
+xrp = format(int(round(xrp, 0)), ",d")
 
 
 str_startday = days.tostring(startday)
@@ -52,7 +52,7 @@ str_endday = days.tostring(endday)
 
 handlecsv.write(csvlist)
 
-print(f"{str_startday} ~ {str_endday} 1년({sum_of_days}일) BTC 종가 평균:{int(btc)}")
-print(f"{str_startday} ~ {str_endday} 1년({sum_of_days}일) ETH 종가 평균:{int(eth)}")
-print(f"{str_startday} ~ {str_endday} 1년({sum_of_days}일) XRP 종가 평균:{int(xrp)}")
+print(f"{str_startday} ~ {str_endday} 1년({sum_of_days}일) BTC 종가 평균:{btc}")
+print(f"{str_startday} ~ {str_endday} 1년({sum_of_days}일) ETH 종가 평균:{eth}")
+print(f"{str_startday} ~ {str_endday} 1년({sum_of_days}일) XRP 종가 평균:{xrp}")
 

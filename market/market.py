@@ -28,8 +28,9 @@ handledic.write(prices)
 csvlist = []
 btc = eth = xrp = 0
 diff = endday - startday
+sum_of_days = diff.days + 1
 
-for offset in range(diff.days):
+for offset in range(sum_of_days):
     day = days.tostring(startday + timedelta(days=offset))
     value = prices.get(day)
     btc += value[0]
@@ -38,12 +39,13 @@ for offset in range(diff.days):
     value.insert(0, day)
     csvlist.append(value)
 
+btc /= sum_of_days
+eth /= sum_of_days
+xrp /= sum_of_days
+btc = round(btc, 0)
+eth = round(eth, 0)
+xrp = round(xrp, 0)
 
-sum_of_days = diff.days
-
-btc //= sum_of_days
-eth //= sum_of_days
-xrp //= sum_of_days
 
 str_startday = days.tostring(startday)
 str_endday = days.tostring(endday)

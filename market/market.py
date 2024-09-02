@@ -46,11 +46,12 @@ btc = format(int(round(btc, 0)), ",d")
 eth = format(int(round(eth, 0)), ",d")
 xrp = format(int(round(xrp, 0)), ",d")
 
+csvlist.append(["average", btc, eth, xrp])
 
 str_startday = days.tostring(startday)
 str_endday = days.tostring(endday)
 
-handlecsv.write(csvlist)
+handlecsv.write(csvlist, f"{str_startday}-{str_endday}.csv")
 
 print(f"{str_startday} ~ {str_endday} 1년({sum_of_days}일) BTC 종가 평균:{btc}")
 print(f"{str_startday} ~ {str_endday} 1년({sum_of_days}일) ETH 종가 평균:{eth}")

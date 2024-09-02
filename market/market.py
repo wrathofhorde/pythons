@@ -3,6 +3,7 @@ import handledic
 import handlecsv
 import closingprice
 from datetime import timedelta
+from prettytable import PrettyTable
 
 days = duration.days()
 prices = handledic.read()
@@ -53,7 +54,23 @@ str_endday = days.tostring(endday)
 
 handlecsv.write(csvlist, f"{str_startday}-{str_endday}.csv")
 
-print(f"{str_startday} ~ {str_endday} 1년({sum_of_days}일) BTC 종가 평균:{btc}")
-print(f"{str_startday} ~ {str_endday} 1년({sum_of_days}일) ETH 종가 평균:{eth}")
-print(f"{str_startday} ~ {str_endday} 1년({sum_of_days}일) XRP 종가 평균:{xrp}")
 
+str_type = "Type"
+str_from = "From"
+str_to = "To"
+str_days = "Days"
+str_price = "Price"
+
+table = PrettyTable()
+table.field_names = [str_type, str_from, str_to, str_days, str_price]
+table.add_rows([
+    ["BTC", str_startday, str_endday, sum_of_days, btc],
+    ["ETH", str_startday, str_endday, sum_of_days, eth],
+    ["XRP", str_startday, str_endday, sum_of_days, xrp]
+    ])
+
+table.align[str_price] = "r"
+
+print()
+print(table)
+print()

@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from icecream import ic
 
-ic.disable()
+# ic.disable()
 
 def get_final(contents):
   html = BeautifulSoup(contents, "html.parser")

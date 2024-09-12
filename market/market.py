@@ -74,3 +74,4 @@ table.align[str_price] = "r"
 print()
 print(table)
 print()
+input("Press any key to close....")

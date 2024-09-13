@@ -42,7 +42,7 @@ class List:
 
         return None
     
-    def delete(self, data):
+    def remove(self, data):
         prev = self.head
         curr = self.head.next
 
@@ -51,7 +51,7 @@ class List:
                 self.len -= 1
                 prev.next = curr.next
 
-                ic(f"{data} deleted, size:{self.len}")
+                ic(f"{data} removed, size:{self.len}")
                 return True
             else:
                 prev = curr
@@ -60,7 +60,7 @@ class List:
         ic(f"{data} is not found")
         return False
 
-    def add(self, data):
+    def add_tail(self, data):
         prev = self.head
         curr = self.head.next
 
@@ -72,7 +72,7 @@ class List:
         prev.next = node
         node.next = curr
         self.len += 1
-        ic(f"{data} added, size:{self.len}")
+        ic(f"{data} add_tail, size:{self.len}")
 
     def size(self):
         ic(f"length of list:{self.len}")
@@ -80,14 +80,14 @@ class List:
 
 if __name__ == "__main__":
     list = List()
-    list.add(1)
+    list.add_tail(1)
     list.insert(2)
     list.insert(3)
-    list.add(4)
+    list.add_tail(4)
     list.print()
-    print(list.delete(5))
-    list.add(6)
-    print(list.delete(3))
-    print(list.delete(1))
+    print(list.remove(5))
+    list.add_tail(6)
+    print(list.remove(3))
+    print(list.remove(1))
     list.print()
     list.size()

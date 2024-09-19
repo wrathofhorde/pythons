@@ -1,11 +1,8 @@
+from node import Node
 from icecream import ic
 
 # ic.disable()
 
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
 
 class List:
     def __init__(self):
@@ -41,7 +38,7 @@ class List:
             curr = curr.next
 
         return None
-    
+
     def remove(self, data):
         prev = self.head
         curr = self.head.next
@@ -77,6 +74,7 @@ class List:
     def size(self):
         ic(f"length of list:{self.len}")
         return self.len
+
 
 if __name__ == "__main__":
     list = List()

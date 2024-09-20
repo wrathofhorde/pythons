@@ -28,13 +28,16 @@ class Graph:
         self.dict[toV].insert(fromV)
         self.numOfEdges += 1
 
+    def showGraphEdgeInfo(self):
+        for k, v in self.dict.items():
+            print(k, end=": ")
+            v.print()
+
     def print(self):
         print(f"number of vertics:{self.numOfVertics}")
         print(f"number of edges:{self.numOfEdges}")
 
-        for k, v in self.dict.items():
-            print(k, end=": ")
-            v.print()
+        self.showGraphEdgeInfo()
 
 
 if __name__ == "__main__":

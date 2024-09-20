@@ -91,6 +91,17 @@ class LinkedList:
             ic("list empty, removeAll nothing to do")
             pass
 
+    def exist(self, data) -> bool:
+        curr: Node = self.head.next
+
+        while curr is not None:
+            if curr.data == data:
+                return True
+            else:
+                curr = curr.next
+
+        return False
+
     def print(self) -> None:
         list = []
         node = Node()

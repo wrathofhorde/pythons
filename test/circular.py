@@ -1,7 +1,8 @@
 head = 0
 tail = 0
 size = 5
-queue = [-1 for _ in range(size + 1)]
+real_size = size + 1
+queue = [-1 for _ in range(real_size)]
 
 print(queue)
 
@@ -15,7 +16,7 @@ def is_queue_empty():
 def is_queue_full():
     global head, tail
 
-    return (tail + 1) % (size + 1) == head
+    return (tail + 1) % real_size == head
 
 
 def enqueue(val):
@@ -27,7 +28,7 @@ def enqueue(val):
 
     queue[tail] = val
     tail += 1
-    tail %= size + 1
+    tail %= real_size
 
 
 def dequeue():
@@ -39,7 +40,7 @@ def dequeue():
 
     ret = queue[head]
     head += 1
-    head %= size + 1
+    head %= real_size
 
     return ret
 

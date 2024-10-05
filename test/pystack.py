@@ -1,60 +1,62 @@
-stack_pointer = 0
-stack = [0 for _ in range(0, 10)]
+top = 0
+size = 5
+stack = [-1 for _ in range(size)]
 
 
 def stack_push(val):
-    global stack_pointer
+    global top
 
-    if stack_pointer >= len(stack):
-        print("Stack Overflow")
+    if top >= len(stack):
+        print(f"Stack Full, {val} rejected")
         return False
 
-    stack[stack_pointer] = val
-    stack_pointer += 1  # stack pointer를 다음으로 이동
+    stack[top] = val
+    top += 1  # stack pointer를 다음으로 이동
     return True
 
 
 def stack_pop():
-    global stack_pointer
+    global top
 
-    if stack_pointer <= 0:
-        print("Stack Underflow")
+    if top <= 0:
+        print("Stack Empty")
         return None
 
-    stack_pointer -= 1
-    return stack[stack_pointer]
+    top -= 1
+    return stack[top]
 
 
 def is_stack_empty():
-    global stack_pointer
+    global top
 
-    return stack_pointer == 0
+    return top == 0
 
 
 def stack_size():
-    global stack_pointer
+    global top
 
-    return stack_pointer
+    return top
 
 
 def stack_peek():
-    global stack_pointer
+    global top
 
-    if stack_pointer == 0:
+    if top == 0:
         return None
 
-    return stack[stack_pointer - 1]
+    return stack[top - 1]
 
 
 def stack_print():
     print("*" * 40)
+    print(f"top:{top}", end=", ")
     print(stack)
     print("*" * 40)
 
 
 if __name__ == "__main__":
-    stack_push(-1)
-    for i in range(0, 10):
+    stack_push(10)
+    for i in range(5):
         stack_push(i)
 
     stack_print()
@@ -63,5 +65,5 @@ if __name__ == "__main__":
     print(f"pop: {stack_pop()}")
     print(f"size: {stack_size()}")
 
-    for _ in range(0, 10):
-        stack_pop()
+    for _ in range(5):
+        print(f"pop: {stack_pop()}")

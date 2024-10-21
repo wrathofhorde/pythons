@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Samsung",
+    "unit_price": 78900,
+    "quantity": 100,
+    "ratio": 5
+  },
+  {
+    "name": "Samsung Woo",
+    "unit_price": 64600,
+    "quantity": 50,
+    "ratio": 3
+  },
+  {
+    "name": "TIGER KOFR",
+    "unit_price": 105345,
+    "quantity": 12,
+    "ratio": 2
+  },
+  {
+    "name": "Nifty 50",
+    "unit_price": 12745,
+    "quantity": 160,
+    "ratio": 2
+  },
+  {
+    "name": "KODEX CD",
+    "unit_price": 1036350,
+    "quantity": 6,
+    "ratio": 2
+  },
+  {
+    "name": "SDI",
+    "unit_price": 424000,
+    "quantity": 3,
+    "ratio": 2
+  },
+  {
+    "name": "LG ES",
+    "unit_price": 372000,
+    "quantity": 3,
+    "ratio": 2
+  },
+  {
+    "name": "S&P TR",
+    "unit_price": 16355,
+    "quantity": 300,
+    "ratio": 2
+  },
+  {
+    "name": "NASDAQ 100 TR",
+    "unit_price": 16780,
+    "quantity": 130,
+    "ratio": 2
+  },
+  {
+    "name": "QCOM",
+    "unit_price": 266432,
+    "quantity": 15,
+    "ratio": 2
+  }
+]

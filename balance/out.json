@@ -1,0 +1,122 @@
+[
+  {
+    "name": "LG ES",
+    "unit_price": 372000,
+    "quantity": 3,
+    "ratio": 2,
+    "total_price": 1116000,
+    "target_ratio": 8.33,
+    "current_ratio": 3.26,
+    "percent_point": 5.07,
+    "buy": 0,
+    "ratio_after_buy": 3.0
+  },
+  {
+    "name": "TIGER KOFR",
+    "unit_price": 105345,
+    "quantity": 12,
+    "ratio": 2,
+    "total_price": 1264140,
+    "target_ratio": 8.33,
+    "current_ratio": 3.69,
+    "percent_point": 4.64,
+    "buy": 0,
+    "ratio_after_buy": 4.0
+  },
+  {
+    "name": "SDI",
+    "unit_price": 424000,
+    "quantity": 3,
+    "ratio": 2,
+    "total_price": 1272000,
+    "target_ratio": 8.33,
+    "current_ratio": 3.72,
+    "percent_point": 4.62,
+    "buy": 0,
+    "ratio_after_buy": 4.0
+  },
+  {
+    "name": "Samsung Woo",
+    "unit_price": 64600,
+    "quantity": 50,
+    "ratio": 3,
+    "total_price": 3230000,
+    "target_ratio": 12.5,
+    "current_ratio": 9.44,
+    "percent_point": 3.06,
+    "buy": 1,
+    "ratio_after_buy": 10.0
+  },
+  {
+    "name": "Nifty 50",
+    "unit_price": 12745,
+    "quantity": 160,
+    "ratio": 2,
+    "total_price": 2039200,
+    "target_ratio": 8.33,
+    "current_ratio": 5.96,
+    "percent_point": 2.37,
+    "buy": 2,
+    "ratio_after_buy": 6.0
+  },
+  {
+    "name": "NASDAQ 100 TR",
+    "unit_price": 16780,
+    "quantity": 130,
+    "ratio": 2,
+    "total_price": 2181400,
+    "target_ratio": 8.33,
+    "current_ratio": 6.38,
+    "percent_point": 1.96,
+    "buy": 0,
+    "ratio_after_buy": 6.0
+  },
+  {
+    "name": "Samsung",
+    "unit_price": 78900,
+    "quantity": 100,
+    "ratio": 5,
+    "total_price": 7890000,
+    "target_ratio": 20.83,
+    "current_ratio": 23.06,
+    "percent_point": -2.23,
+    "buy": 0,
+    "ratio_after_buy": 23.0
+  },
+  {
+    "name": "QCOM",
+    "unit_price": 266432,
+    "quantity": 15,
+    "ratio": 2,
+    "total_price": 3996480,
+    "target_ratio": 8.33,
+    "current_ratio": 11.68,
+    "percent_point": -3.35,
+    "buy": 0,
+    "ratio_after_buy": 12.0
+  },
+  {
+    "name": "S&P TR",
+    "unit_price": 16355,
+    "quantity": 300,
+    "ratio": 2,
+    "total_price": 4906500,
+    "target_ratio": 8.33,
+    "current_ratio": 14.34,
+    "percent_point": -6.01,
+    "buy": 0,
+    "ratio_after_buy": 14.0
+  },
+  {
+    "name": "KODEX CD",
+    "unit_price": 1036350,
+    "quantity": 6,
+    "ratio": 2,
+    "total_price": 6218100,
+    "target_ratio": 8.33,
+    "current_ratio": 18.17,
+    "percent_point": -9.84,
+    "buy": 0,
+    "ratio_after_buy": 18.0
+  }
+]

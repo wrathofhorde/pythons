@@ -1,42 +1,40 @@
-import csv
-import pandas
 from datetime import datetime
 
-class CSV:
-    FILE_NAME = "account_book.csv"  # class variable
-        DATE = "date"
-        AMOUNT = "amount"
-        CATEGORY = "category"
-        DESC = "description"
-        COLUMN_NAMES = [DATE, AMOUNT, CATEGORY, DESC]
-	
-    @classmethod    # decorator
-    def init_csv(cls):
-        try:
-            pandas.read_csv(cls.FILE_NAME)
-        except FileNotFoundError:
-            df = pandas.DataFrame(columns=cls.COLUMN_NAMES)
-            df.to_csv(cls.FILE_NAME, index=False)
 
-    @classmethod
-    def add_entry(cls, date, amount, category, desc):
-        new_entry = {
-        cls.DATE: date,
-                    cls.AMOUNT: amount,
-                    cls.CATEGORY: category,
-                    cls.DESC: desc,
-        }
+def get_date(prompt, allow_default=False):
+    date_format = "%Y-%m-%d"
+    input_date = input(prompt)
 
-        with open(
-            cls.FILE_NAME, "a", encoding="utf-8-sig", newline=""
-        ) as csvfile:   # context manager
-            csv_writer = csv.DictWriter(
-            csvfile, fieldnames=cls.COLUMN_NAMES
-        )
-        csv_writer.writerow(new_entry)
+    if allow_default and not input_date:
+        return datetime.today().strftime(date_format)
 
-if __name__ == "__main__":
-    print(CSV.FILE_NAME)    # 인스턴스 생성없이, CSV() 없이 접근할 수 있음
-    CSV.init_csv()
-    CSV.add_entry("2024-10-10", 100, "수입", "월급")
-    CSV.add_entry("2024-10-10", 10, "지출", "저녁 식사")
+    try:
+        valid_date = datetime.strptime(input_date, date_format)
+        return valid_date.strftime(date_format)
+    except:
+        print("날짜 형식이 잘못되었습니다. 2000-01-23 과 같은 형식으로 입력하시오")
+        return get_date(prompt, allow_default)
+
+
+def get_amount():
+    try:
+        amount = int(input("금액을 입력하시오: "))
+
+        if amount <= 0:
+            raise ValueError("금액은 0보다 큰 값이어야 합니다.")
+
+        return amount
+    except ValueError as e:
+        print(e)
+        return get_amount()
+    except Exception as e:
+        print(e)
+        return get_amount()
+
+
+def get_category():
+    pass
+
+
+def get_description():
+    pass
